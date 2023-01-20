@@ -1,0 +1,134 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f7f7f7;
+  font-family: "Lato", sans-serif;
+}
+
+.App {
+  margin: 2.5rem;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+header h1 {
+  font-style: normal;
+  font-weight: 900;
+  font-size: 32px;
+  line-height: 48px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.75px;
+  color: #343434;
+  padding: 10px 0;
+}
+
+.filter-container,
+table {
+  background: #ffffff;
+  padding: 2rem;
+  margin-bottom: 35px;
+}
+
+.filter-container h2 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.1px;
+  color: #616161;
+}
+
+.form-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: center;
+  grid-gap: 1.5rem;
+  padding: 1.5rem 0;
+}
+
+Select {
+  border: 1px solid #adb7be;
+  outline: none;
+  padding: 0.7rem 0.5rem;
+  border-radius: 0.25rem;
+  width: 250px;
+  color: #adb7be;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+button {
+  color: #fff;
+  background: #46c35f;
+  border-radius: 0.25rem;
+  width: 250px;
+  padding: 0.7rem 0.5rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0.1px;
+}
+
+button:hover {
+  opacity: 0.7;
+}
+
+table {
+  width: 100%;
+  padding: 3rem 1.5rem;
+}
+
+thead tr {
+  background: #f9f9fa;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.75px;
+  color: #343434;
+  height: 30px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  border-bottom: 10px solid red !important;
+}
+
+tbody {
+  border: 10px solid red;
+}
+table tr {
+  /* border-bottom: 10px solid #ECECEC; */
+  border-bottom: 10px solid red !important;
+}
+
+td {
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #343434;
+  text-align: center;
+  padding: 0.6rem;
+}
