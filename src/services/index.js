@@ -1,5 +1,5 @@
 import React from 'react'
-import { GET_AGES_URL, GET_LEVELS_URL, GET_GENDERS_URL, GET_STATES_URL } from "../constants/API";
+import { GET_AGES_URL, GET_LEVELS_URL, GET_GENDERS_URL, GET_STATES_URL, GET_ALL_DATA_URL } from "../constants/API";
 
 export function getAges() {
   return (
@@ -50,4 +50,16 @@ export function getStates() {
   )
 }
 
+
+export function getStudentsData() {
+  return (
+     fetch(GET_ALL_DATA_URL, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json', 
+            'Content-Type': 'application/json'
+        }
+     }).then(res => res.json())
+  )
+}
 

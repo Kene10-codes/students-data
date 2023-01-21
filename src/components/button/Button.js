@@ -8,7 +8,7 @@ export function SearchButton({text, className}) {
 
 export function DownloadButton({text, className}) {
   return (
-    <button className={className}>{text}</button>
+    <button value="download" className={className}>{text}</button>
   )
 }
 

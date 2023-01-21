@@ -5,9 +5,10 @@ import {
   SearchButton,
   DownloadButton,
 } from "../../components/button/Button.js";
-import { getAges, getLevel, getStates, getGenders } from "../../services/index.js";
+import { getAges, getLevel, getStates, getGenders, getStudentsData } from "../../services/index.js";
 
 function FilterStudents() {
+
   const [ages, setAges] = useState([]);
   const [levels, setLevels] = useState([]);
   const [states, setStates] = useState([]);
@@ -16,6 +17,7 @@ function FilterStudents() {
   const [level, setLevel] = useState("");
   const [state, setState] = useState("");
   const [gender, setGender] = useState("");
+  const [search, setSearch] = useState("");
 
   // Perform requests on the server
   useEffect(() => {
@@ -46,6 +48,13 @@ function FilterStudents() {
         setGenders(gender.data);
       }
     })
+
+    getStudentsData().then((studentsData) => {
+      if(mounted) {
+        console.log(studentsData);
+      }
+    })
+
     // clean up after mounted
     return () => (mounted = false);
   }, []);
@@ -96,11 +105,45 @@ function FilterStudents() {
           <SearchButton text="Search" className="search" />
         </form>
       </div>
+
+       <StudentInfo />
     </div>
   );
 }
 
 function StudentInfo() {
+  
+  // Set the states
+  const [studentsData, setStudentsData] = useState([]);
+
+  // Perform requests on the server
+  useEffect(() => {
+    let mounted = true;
+    getStudentsData().then((studentsData) => {
+      if(mounted) {
+        setStudentsData(studentsData.data.students);
+      }
+    })
+
+    // clean up after mounted
+    return () => (mounted = false);
+  }, []);
+
+  // converts first letter to uppercase func
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+
+  // Add zero func
+  function addZero(num) {
+    if(num < 10) {
+       return "0" + num;
+    } else {
+      return num;
+    }
+  }
+  
   return (
     <table>
       <thead>
@@ -116,30 +159,19 @@ function StudentInfo() {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>01</td>
-          <td>Chukwuma</td>
-          <td>James</td>
-          <td>24</td>
-          <td>Male</td>
-          <td>100 level</td>
-          <td>Ebonyi State</td>
-          <td>
-            <DownloadButton text="Download Result" className="download" />
-          </td>
+        
+       {(studentsData?.map(student => (
+         <tr key={student.id}>
+               <td>{addZero(student.id)}</td>
+               <td>{capitalizeFirstLetter(student.surname)}</td>
+               <td>{student.firstname}</td>
+               <td>{student.age}</td>
+               <td>{capitalizeFirstLetter(student.gender)}</td>
+               <td>{student.level}</td>
+               <td>{student.state}</td>
+               <td><DownloadButton text="Download Result" className="download" /></td>
         </tr>
-        <tr>
-          <td>02</td>
-          <td>Animashaun</td>
-          <td>Deborah</td>
-          <td>24</td>
-          <td>Female</td>
-          <td>100 level</td>
-          <td>Ondo State</td>
-          <td>
-            <DownloadButton text="Download Result" className="download" />
-          </td>
-        </tr>
+        )))}
       </tbody>
     </table>
   );
@@ -150,7 +182,6 @@ function StudentsData() {
     <>
       <Header text="Student Data Table" />
       <FilterStudents />
-      <StudentInfo />
     </>
   );
 }
