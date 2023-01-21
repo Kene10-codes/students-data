@@ -1,21 +1,77 @@
-import { useState, useEffect } from "react"
-
-export function SelectInput({type, text, placeholder, onChange, className, ages, data}) {
-  let arrayOfData =  ages;
-  // let options = arrayOfData.map(data => {
-  //   <option 
-  //     key={data.id}
-  //     value={data.id}>
-  //      data={data}
-  //    </option>
-  // })
+export function SelectInput({
+  name,
+  options,
+  placeholder,
+  onChange,
+  className,
+  handleChange
+}) {
   return (
-    <label text={text}>
-        <select name="search" className={className} onChange={onChange} >
-            <option>{placeholder}</option>
-            {/* {options} */}
-        </select>
-    </label>
-  )
+    <select name={name} id={name} className={className} onChange={handleChange}>
+      <option>{placeholder}</option>
+      {options?.map((option) => (
+        <option key={option.id} value={option.age}>
+          {option.age}
+        </option>
+      ))}
+    </select>
+  );
 }
 
+export function SelectInputLevel({
+  name,
+  options,
+  placeholder,
+  handleChange,
+  className
+}) {
+  return (
+    <select name={name} id={name} className={className} onChange={handleChange}>
+      <option>{placeholder}</option>
+      {options?.map((option) => (
+        <option key={option.id} value={option.level}>
+          {option.level}
+        </option>
+      ))}
+    </select>
+  );
+}
+
+export function SelectInputStates({
+  name,
+  options,
+  placeholder,
+  handleChange,
+  className
+}) {
+  return (
+    <select name={name} id={name} className={className} onChange={handleChange}>
+      <option>{placeholder}</option>
+      {options?.map((option) => (
+        <option key={option.id} value={option.name}>
+          {option.name}
+        </option>
+      ))}
+    </select>
+  );
+}
+
+
+export function SelectInputGenders({
+  name,
+  options,
+  placeholder,
+  handleChange,
+  className
+}) {
+  return (
+    <select name={name} id={name} className={className} onChange={handleChange}>
+      <option>{placeholder}</option>
+      {options?.map((option) => (
+        <option key={option.id} value={option.gender}>
+          {option.gender}
+        </option>
+      ))}
+    </select>
+  );
+}

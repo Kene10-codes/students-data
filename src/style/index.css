@@ -54,7 +54,7 @@ table {
   color: #616161;
 }
 
-.form-container {
+form {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: center;
@@ -68,9 +68,13 @@ Select {
   padding: 0.7rem 0.5rem;
   border-radius: 0.25rem;
   width: 250px;
-  color: #adb7be;
+  color: #eee;
   font-size: 0.875rem;
   cursor: pointer;
+}
+
+Select option {
+  color: #000; 
 }
 
 button {
@@ -88,10 +92,11 @@ button {
   font-size: 14px;
   line-height: 16px;
   letter-spacing: 0.1px;
+  transition: all 0.2s ease-in-out;
 }
 
 button:hover {
-  opacity: 0.7;
+  opacity: 0.85;
 }
 
 table {
@@ -117,6 +122,7 @@ thead tr {
 tbody {
   border: 10px solid red;
 }
+
 table tr {
   /* border-bottom: 10px solid #ECECEC; */
   border-bottom: 10px solid red !important;
