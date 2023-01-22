@@ -1,7 +1,7 @@
 
-export function SearchButton({text, className}) {
+export function SearchButton({text, className, type}) {
   return (
-    <button className={className}>{text}</button>
+    <button type={type} className={className}>{text}</button>
   )
 }
 

@@ -2,12 +2,11 @@ export function SelectInput({
   name,
   options,
   placeholder,
-  onChange,
   className,
-  handleChange
+  onChange
 }) {
   return (
-    <select name={name} id={name} className={className} onChange={handleChange}>
+    <select name={name} id={name} className={className} onChange={onChange}>
       <option>{placeholder}</option>
       {options?.map((option) => (
         <option key={option.id} value={option.age}>
@@ -22,11 +21,11 @@ export function SelectInputLevel({
   name,
   options,
   placeholder,
-  handleChange,
-  className
+  className,
+  onChange
 }) {
   return (
-    <select name={name} id={name} className={className} onChange={handleChange}>
+    <select name={name} id={name} className={className} onChange={onChange}>
       <option>{placeholder}</option>
       {options?.map((option) => (
         <option key={option.id} value={option.level}>
@@ -41,11 +40,11 @@ export function SelectInputStates({
   name,
   options,
   placeholder,
-  handleChange,
-  className
+  className,
+  onChange
 }) {
   return (
-    <select name={name} id={name} className={className} onChange={handleChange}>
+    <select name={name} id={name} className={className} onChange={onChange}>
       <option>{placeholder}</option>
       {options?.map((option) => (
         <option key={option.id} value={option.name}>
@@ -61,11 +60,11 @@ export function SelectInputGenders({
   name,
   options,
   placeholder,
-  handleChange,
-  className
+  className,
+  onChange
 }) {
   return (
-    <select name={name} id={name} className={className} onChange={handleChange}>
+    <select name={name} id={name} className={className} onChange={onChange}>
       <option>{placeholder}</option>
       {options?.map((option) => (
         <option key={option.id} value={option.gender}>

@@ -5,7 +5,8 @@ import {
   SearchButton,
   DownloadButton,
 } from "../../components/button/Button.js";
-import { getAges, getLevel, getStates, getGenders, getStudentsData } from "../../services/index.js";
+import { getAges, getLevel, getStates, getGenders, getStudentsData, filerStudentsData  } from "../../services/index.js";
+import { POST_FILTER_DATA_URL } from "../../constants/API";
 
 function FilterStudents() {
 
@@ -13,11 +14,12 @@ function FilterStudents() {
   const [levels, setLevels] = useState([]);
   const [states, setStates] = useState([]);
   const [genders, setGenders] = useState([]);
+  const [filterData, setFilteredData] = useState([]);
   const [age, setAge] = useState("");
   const [level, setLevel] = useState("");
   const [state, setState] = useState("");
   const [gender, setGender] = useState("");
-  const [search, setSearch] = useState("");
+
 
   // Perform requests on the server
   useEffect(() => {
@@ -49,72 +51,81 @@ function FilterStudents() {
       }
     })
 
-    getStudentsData().then((studentsData) => {
-      if(mounted) {
-        console.log(studentsData);
-      }
-    })
-
     // clean up after mounted
     return () => (mounted = false);
   }, []);
 
 
-  // Handle Change func
-  const handleChange = (e) => {
-    setAge(e.target.value);
-    setState(e.target.value);
-    setLevel(e.target.value);
-    setState(e.target.value);
+  // Handle form and search submit
+  function handleSubmit(e) {
+    e.preventDefault();
+   
+    let mounted = true;
+    fetch(POST_FILTER_DATA_URL, {
+        method: 'POST',
+        body: JSON.stringify({age, state, level, gender}),
+        headers: {
+            'Accept': 'application/json', 
+            'Content-Type': 'application/json'
+        }
+     }).then(res => res.json()).then(data => {
+      setFilteredData(data.data.students);
+     })
+
+    // clean up after mounted
+    return () => (mounted = false);
+
   }
 
   return (
     <div className="filter-container">
       <h2>Filter Student Table By:</h2>
       <div className="form-container">
-        <form>
+        <form id="form" onSubmit={handleSubmit}>
           <SelectInput
             options={ages}
             name="ages"
             placeholder="select age"
             text="Age"
             className="select-age"
-           handleChange={handleChange}
+           onChange={e => setAge(e.target.value)}
           />
           <SelectInputStates
-             options={states}
+            options={states}
             placeholder="select state"
             text="state"
             className="select-state"
-            handleChange={handleChange}
+            onChange={e => setState(e.target.value)}
           />
           <SelectInputLevel
             options={levels}
             placeholder="select level"
             text="level"
             className="select-level"
-            handleChange={handleChange}
+            onChange={e => setLevel(e.target.value)}
           />
           <SelectInputGenders
             options={genders}
             placeholder="select gender"
             text="gender"
             className="select-gender"
-            handleChange={handleChange}
+           onChange={e => setGender(e.target.value)}
           />
-          <SearchButton text="Search" className="search" />
+          <SearchButton  type="submit" text="Search" className="search" />
         </form>
       </div>
-
-       <StudentInfo />
+       <StudentInfo filterData={filterData} />
     </div>
   );
 }
 
-function StudentInfo() {
-  
-  // Set the states
+function StudentInfo({filterData}) {
+   // Set the states
   const [studentsData, setStudentsData] = useState([]);
+  const [result, setResult] = useState({});
+
+  const POST_VIEW_RESULT_URL = `https://test.omniswift.com.ng/api/viewResult/${result.id}`;
+ 
 
   // Perform requests on the server
   useEffect(() => {
@@ -124,6 +135,8 @@ function StudentInfo() {
         setStudentsData(studentsData.data.students);
       }
     })
+
+   
 
     // clean up after mounted
     return () => (mounted = false);
@@ -143,7 +156,30 @@ function StudentInfo() {
       return num;
     }
   }
-  
+
+
+  function downloadResult() {
+      fetch(POST_VIEW_RESULT_URL,  {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json', 
+            'Content-Type': 'application/json'
+        }}).then(res => res.json()).then((data) => {
+          // console.log(data);
+          setResult(data)
+        }) 
+
+        const file = new Blob(result, {type: 'text/plain'});
+
+
+        const elem = document.createElement("a");
+        elem.href= URL.createObjectURL(file);
+        elem.download = "100ideas-" + Date.now() + ".txt";
+
+        document.body.appendChild(elem);
+        elem.click();
+  }
+
   return (
     <table>
       <thead>
@@ -160,7 +196,7 @@ function StudentInfo() {
       </thead>
       <tbody>
         
-       {(studentsData?.map(student => (
+       {(filterData.length <= 0 ?  studentsData?.map(student => (
          <tr key={student.id}>
                <td>{addZero(student.id)}</td>
                <td>{capitalizeFirstLetter(student.surname)}</td>
@@ -169,7 +205,19 @@ function StudentInfo() {
                <td>{capitalizeFirstLetter(student.gender)}</td>
                <td>{student.level}</td>
                <td>{student.state}</td>
-               <td><DownloadButton text="Download Result" className="download" /></td>
+               <td><DownloadButton onClick={downloadResult} text="Download Result" className="download" /></td>
+        </tr>
+       )) 
+       : filterData?.map(student => (
+         <tr key={student.id}>
+               <td>{addZero(student.id)}</td>
+               <td>{capitalizeFirstLetter(student.surname)}</td>
+               <td>{student.firstname}</td>
+               <td>{student.age}</td>
+               <td>{capitalizeFirstLetter(student.gender)}</td>
+               <td>{student.level}</td>
+               <td>{student.state}</td>
+               <td><DownloadButton onClick={downloadResult} text="Download Result" className="download" /></td>
         </tr>
         )))}
       </tbody>
