@@ -36,6 +36,10 @@ header h1 {
   padding: 10px 0;
 }
 
+div.table-container {
+  overflow-x: auto;
+}
+
 .filter-container,
 table {
   background: #ffffff;
@@ -74,7 +78,7 @@ Select {
 }
 
 Select option {
-  color: #000; 
+  color: #000;
 }
 
 button {
@@ -147,7 +151,7 @@ div.wrapper h2 {
   font-weight: 700;
   font-size: 18px;
   line-height: 19px;
-  color: #4F4F4F;
+  color: #4f4f4f;
   text-align: center;
   padding: 1rem 0 1rem 0;
 }
@@ -158,12 +162,12 @@ div.wrapper p {
   font-size: 14px;
   line-height: 14px;
   text-align: center;
-  color: #4F4F4F;
+  color: #4f4f4f;
   padding-bottom: 0.5rem;
 }
 
 div.wrapper h3 {
-  font-family: 'Lato';
+  font-family: "Lato";
   font-style: normal;
   font-weight: 600;
   font-size: 22px;
@@ -173,7 +177,7 @@ div.wrapper h3 {
 }
 
 div.wrapper h4 {
-  font-family: 'Lato';
+  font-family: "Lato";
   font-style: normal;
   font-weight: 700;
   font-size: 12px;
@@ -189,7 +193,7 @@ div.wrapper h4 {
 }
 
 .student-details div p {
-  font-family: 'Lato';
+  font-family: "Lato";
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
@@ -198,7 +202,7 @@ div.wrapper h4 {
 }
 
 .student-details div p span {
-  font-family: 'Lato';
+  font-family: "Lato";
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -218,7 +222,7 @@ div.wrapper h4 {
   border-collapse: collapse;
 }
 
-#table thead:first-child, 
+#table thead:first-child,
 #table-two thead:first-child {
   font-weight: 700;
   font-size: 14px;
@@ -226,14 +230,12 @@ div.wrapper h4 {
   color: #fff;
   height: 40px;
   text-align: center;
-  background: #0D7590;
+  background: #0d7590;
 }
 
-
-#table tbody  tr:nth-child(odd) {
-  background: #F2F2F2;
+#table tbody tr:nth-child(odd) {
+  background: #f2f2f2;
 }
-
 
 #table tbody td,
 #table-two tbody td {
@@ -245,4 +247,28 @@ div.wrapper h4 {
   color: #343434;
   text-align: center;
   padding: 0.6rem;
+}
+
+button Link {
+  color: #fff;
+}
+
+@media only screen and (max-width: 690px) {
+  form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: center;
+    grid-gap: 1rem;
+    padding: 1.5rem 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: center;
+    grid-gap: 1.5rem;
+    padding: 1.5rem 0;
+  }
 }
