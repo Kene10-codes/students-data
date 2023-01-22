@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { Header } from "../../components/header/Header.js";
 import {
   SelectInput,
@@ -16,7 +16,6 @@ import {
 } from "../../services/index.js";
 
 import { POST_FILTER_DATA_URL } from "../../constants/API";
-import StudentContext from "../../components/context/StudentContext.js";
 import { useNavigate } from "react-router-dom";
 
 function FilterStudents() {
@@ -84,41 +83,43 @@ function FilterStudents() {
   }
 
   return (
-    <div className="filter-container">
-      <h2>Filter Student Table By:</h2>
-      <div className="form-container">
-        <form id="form" onSubmit={handleSubmit}>
-          <SelectInput
-            options={ages}
-            text="Age:"
-            name="ages"
-            placeholder="select age"
-            className="select-age"
-            onChange={(e) => setAge(e.target.value)}
-          />
-          <SelectInputStates
-            options={states}
-            placeholder="select state"
-            text="State:"
-            className="select-state"
-            onChange={(e) => setState(e.target.value)}
-          />
-          <SelectInputLevel
-            options={levels}
-            placeholder="select level"
-            text="Level:"
-            className="select-level"
-            onChange={(e) => setLevel(e.target.value)}
-          />
-          <SelectInputGenders
-            options={genders}
-            placeholder="select gender"
-            text="Gender:"
-            className="select-gender"
-            onChange={(e) => setGender(e.target.value)}
-          />
-          <SearchButton type="submit" text="Search" className="search" />
-        </form>
+    <div>
+      <div className="filter-container">
+        <h2>Filter Student Table By:</h2>
+        <div className="form-container">
+          <form id="form" onSubmit={handleSubmit}>
+            <SelectInput
+              options={ages}
+              text="Age:"
+              name="ages"
+              placeholder="select age"
+              className="select-age"
+              onChange={(e) => setAge(e.target.value)}
+            />
+            <SelectInputStates
+              options={states}
+              placeholder="select state"
+              text="State:"
+              className="select-state"
+              onChange={(e) => setState(e.target.value)}
+            />
+            <SelectInputLevel
+              options={levels}
+              placeholder="select level"
+              text="Level:"
+              className="select-level"
+              onChange={(e) => setLevel(e.target.value)}
+            />
+            <SelectInputGenders
+              options={genders}
+              placeholder="select gender"
+              text="Gender:"
+              className="select-gender"
+              onChange={(e) => setGender(e.target.value)}
+            />
+            <SearchButton type="submit" text="Search" className="search" />
+          </form>
+        </div>
       </div>
       <StudentInfo filterData={filterData} />
     </div>
@@ -158,60 +159,62 @@ function StudentInfo({ filterData }) {
   }
 
   return (
-    <div className="table-container">
-      <table className="table">
-        <thead>
-          <tr>
-            <th>S/N</th>
-            <th>Surname</th>
-            <th>First Name</th>
-            <th>Age</th>
-            <th>Gender</th>
-            <th>Level</th>
-            <th>State</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filterData.length <= 0
-            ? studentsData?.map((student) => (
-                <tr key={student.id}>
-                  <td>{addZero(student.id)}</td>
-                  <td>{capitalizeFirstLetter(student.surname)}</td>
-                  <td>{capitalizeFirstLetter(student.firstname)}</td>
-                  <td>{student.age}</td>
-                  <td>{capitalizeFirstLetter(student.gender)}</td>
-                  <td>{student.level}</td>
-                  <td>{capitalizeFirstLetter(student.state)}</td>
-                  <td>
-                    <button
-                      onClick={() => navigate(`/view-result/${student.id}`)}
-                    >
-                      View Result
-                    </button>
-                  </td>
-                </tr>
-              ))
-            : filterData?.map((student) => (
-                <tr key={student.id}>
-                  <td>{addZero(student.id)}</td>
-                  <td>{capitalizeFirstLetter(student.surname)}</td>
-                  <td>{capitalizeFirstLetter(student.firstname)}</td>
-                  <td>{student.age}</td>
-                  <td>{capitalizeFirstLetter(student.gender)}</td>
-                  <td>{student.level}</td>
-                  <td>{capitalizeFirstLetter(student.state)}</td>
-                  <td>
-                    <button
-                      onClick={() => navigate(`/view-result/${student.id}`)}
-                    >
-                      View Result
-                    </button>
-                  </td>
-                </tr>
-              ))}
-        </tbody>
-      </table>
+    <div className="filter-container">
+      <div className="table-container">
+        <table className="table">
+          <thead>
+            <tr>
+              <th>S/N</th>
+              <th>Surname</th>
+              <th>First Name</th>
+              <th>Age</th>
+              <th>Gender</th>
+              <th>Level</th>
+              <th>State</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filterData.length <= 0
+              ? studentsData?.map((student) => (
+                  <tr key={student.id}>
+                    <td>{addZero(student.id)}</td>
+                    <td>{capitalizeFirstLetter(student.surname)}</td>
+                    <td>{capitalizeFirstLetter(student.firstname)}</td>
+                    <td>{student.age}</td>
+                    <td>{capitalizeFirstLetter(student.gender)}</td>
+                    <td>{student.level}</td>
+                    <td>{capitalizeFirstLetter(student.state)}</td>
+                    <td>
+                      <button
+                        onClick={() => navigate(`/view-result/${student.id}`)}
+                      >
+                        View Result
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              : filterData?.map((student) => (
+                  <tr key={student.id}>
+                    <td>{addZero(student.id)}</td>
+                    <td>{capitalizeFirstLetter(student.surname)}</td>
+                    <td>{capitalizeFirstLetter(student.firstname)}</td>
+                    <td>{student.age}</td>
+                    <td>{capitalizeFirstLetter(student.gender)}</td>
+                    <td>{student.level}</td>
+                    <td>{capitalizeFirstLetter(student.state)}</td>
+                    <td>
+                      <button
+                        onClick={() => navigate(`/view-result/${student.id}`)}
+                      >
+                        View Result
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

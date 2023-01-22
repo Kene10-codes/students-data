@@ -15,7 +15,6 @@ const Result = React.forwardRef((props, ref) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.data);
         setStudentResult(data);
       });
   }
@@ -46,7 +45,7 @@ const Result = React.forwardRef((props, ref) => {
             </span>
           </p>
           <p>
-            Level:<span>{studentResult.data?.level} </span>
+            Level: <span>{studentResult.data?.level} </span>
           </p>
         </div>
 
