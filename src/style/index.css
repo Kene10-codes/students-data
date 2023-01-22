@@ -58,7 +58,7 @@ form {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: center;
-  grid-gap: 1.5rem;
+  grid-gap: 1rem;
   padding: 1.5rem 0;
 }
 
@@ -99,12 +99,13 @@ button:hover {
   opacity: 0.85;
 }
 
-table {
+.table {
   width: 100%;
+  border-collapse: collapse;
   padding: 3rem 0;
 }
 
-thead tr {
+.table thead:first-child {
   background: #f9f9fa;
   font-family: "Lato";
   font-style: normal;
@@ -116,19 +117,126 @@ thead tr {
   text-align: center;
   margin: 0;
   padding: 0;
-  border-bottom: 10px solid red !important;
 }
 
-tbody {
-  border: 10px solid red;
+.table tbody tr {
+  border-bottom: 1px solid #f9f9fa;
 }
 
-table tr {
-  /* border-bottom: 10px solid #ECECEC; */
-  border-bottom: 10px solid red !important;
+.table td {
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #343434;
+  text-align: center;
+  padding: 0.6rem;
 }
 
-td {
+div.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 0.5rem;
+}
+
+div.wrapper h2 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 19px;
+  color: #4F4F4F;
+  text-align: center;
+  padding: 1rem 0 1rem 0;
+}
+
+div.wrapper p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  text-align: center;
+  color: #4F4F4F;
+  padding-bottom: 0.5rem;
+}
+
+div.wrapper h3 {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 24px;
+  color: #333333;
+  padding-bottom: 0.5rem;
+}
+
+div.wrapper h4 {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  color: #333333;
+}
+
+.student-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 0.5rem;
+}
+
+.student-details div p {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  color: #000000;
+}
+
+.student-details div p span {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 14px;
+  color: #000000;
+}
+
+#table {
+  padding: 2rem;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#table-two {
+  padding: 2rem;
+  width: 400px;
+  border-collapse: collapse;
+}
+
+#table thead:first-child, 
+#table-two thead:first-child {
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.75px;
+  color: #fff;
+  height: 40px;
+  text-align: center;
+  background: #0D7590;
+}
+
+
+#table tbody  tr:nth-child(odd) {
+  background: #F2F2F2;
+}
+
+
+#table tbody td,
+#table-two tbody td {
   font-family: "Lato", sans-serif;
   font-style: normal;
   font-weight: 400;
