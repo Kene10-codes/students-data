@@ -197,7 +197,7 @@ div.wrapper h4 {
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
-  line-height: 24px;
+  line-height: 32px;
   color: #000000;
 }
 
@@ -253,26 +253,6 @@ button Link {
   color: #fff;
 }
 
-@media only screen and (max-width: 690px) {
-  form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: center;
-    grid-gap: 1rem;
-    padding: 1.5rem 0;
-  }
-}
-
-@media only screen and (max-width: 500px) {
-  form {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: center;
-    grid-gap: 1.5rem;
-    padding: 1.5rem 0;
-  }
-}
-
 p span.remarks {
   font-family: "Lato";
   font-style: normal;
@@ -307,4 +287,31 @@ div .print {
 
 div.result {
   padding: 20px;
+}
+
+@media only screen and (max-width: 690px) {
+  form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: center;
+    grid-gap: 1rem;
+    padding: 1.5rem 0;
+  }
+
+  .student-details {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    padding: 2rem 0.5rem;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: center;
+    grid-gap: 1.5rem;
+    padding: 1.5rem 0;
+  }
 }
