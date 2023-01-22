@@ -299,3 +299,12 @@ footer hr {
   width: 250px;
   margin-bottom: 5px;
 }
+
+div .print {
+  text-align: center;
+  margin-top: 20px;
+}
+
+div.result {
+  padding: 20px;
+}
