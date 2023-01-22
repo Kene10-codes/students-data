@@ -22,7 +22,6 @@ const Result = React.forwardRef((props, ref) => {
     downloadResult();
   }, [id]);
 
-  console.log(studentResult);
   return (
     <div ref={ref} className="result">
       <div className="wrapper">

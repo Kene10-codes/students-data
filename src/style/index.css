@@ -304,6 +304,10 @@ div.result {
     align-items: baseline;
     padding: 2rem 0.5rem;
   }
+
+  .student-details h3 {
+    font-size: 1.2rem;
+  }
 }
 
 @media only screen and (max-width: 500px) {
