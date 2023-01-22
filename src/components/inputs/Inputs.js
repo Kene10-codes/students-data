@@ -3,7 +3,7 @@ export function SelectInput({
   options,
   placeholder,
   className,
-  onChange
+  onChange,
 }) {
   return (
     <select name={name} id={name} className={className} onChange={onChange}>
@@ -22,7 +22,7 @@ export function SelectInputLevel({
   options,
   placeholder,
   className,
-  onChange
+  onChange,
 }) {
   return (
     <select name={name} id={name} className={className} onChange={onChange}>
@@ -41,7 +41,7 @@ export function SelectInputStates({
   options,
   placeholder,
   className,
-  onChange
+  onChange,
 }) {
   return (
     <select name={name} id={name} className={className} onChange={onChange}>
@@ -55,13 +55,12 @@ export function SelectInputStates({
   );
 }
 
-
 export function SelectInputGenders({
   name,
   options,
   placeholder,
   className,
-  onChange
+  onChange,
 }) {
   return (
     <select name={name} id={name} className={className} onChange={onChange}>

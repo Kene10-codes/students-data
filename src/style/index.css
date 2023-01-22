@@ -272,3 +272,30 @@ button Link {
     padding: 1.5rem 0;
   }
 }
+
+p span.remarks {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 14px;
+  color: #0d7590;
+}
+
+footer {
+  padding-top: 60px;
+}
+
+footer p {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 16px;
+  color: #333333;
+}
+
+footer hr {
+  width: 250px;
+  margin-bottom: 5px;
+}

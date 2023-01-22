@@ -6,10 +6,3 @@ export function SearchButton({ text, className, type }) {
   );
 }
 
-export function DownloadButton({ text, className }) {
-  return (
-    <button type="download" className={className}>
-      {text}
-    </button>
-  );
-}
