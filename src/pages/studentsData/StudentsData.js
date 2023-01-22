@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Header } from "../../components/header/Header.js";
 import { SelectInput, SelectInputLevel, SelectInputStates, SelectInputGenders } from "../../components/inputs/Inputs.js";
 import {
@@ -7,9 +7,10 @@ import {
 } from "../../components/button/Button.js";
 import { getAges, getLevel, getStates, getGenders, getStudentsData, filerStudentsData  } from "../../services/index.js";
 import { POST_FILTER_DATA_URL } from "../../constants/API";
+import StudentContext from "../../components/context/StudentContext.js"
 
 function FilterStudents() {
-
+  // Set states
   const [ages, setAges] = useState([]);
   const [levels, setLevels] = useState([]);
   const [states, setStates] = useState([]);
@@ -122,10 +123,7 @@ function FilterStudents() {
 function StudentInfo({filterData}) {
    // Set the states
   const [studentsData, setStudentsData] = useState([]);
-  const [result, setResult] = useState({});
-
-  const POST_VIEW_RESULT_URL = `https://test.omniswift.com.ng/api/viewResult/${result.id}`;
- 
+  // const [resultData, setResultData] = useState([]);
 
   // Perform requests on the server
   useEffect(() => {
@@ -135,8 +133,6 @@ function StudentInfo({filterData}) {
         setStudentsData(studentsData.data.students);
       }
     })
-
-   
 
     // clean up after mounted
     return () => (mounted = false);
@@ -158,26 +154,26 @@ function StudentInfo({filterData}) {
   }
 
 
-  function downloadResult() {
-      fetch(POST_VIEW_RESULT_URL,  {
+  function downloadResult(id) {
+      fetch(`https://test.omniswift.com.ng/api/viewResult/${id}`,  {
         method: 'POST',
         headers: {
             'Accept': 'application/json', 
             'Content-Type': 'application/json'
         }}).then(res => res.json()).then((data) => {
-          // console.log(data);
-          setResult(data)
+          console.log(data.data);
+          // setResultData(data.data)
         }) 
 
-        const file = new Blob(result, {type: 'text/plain'});
+        // const file = new Blob(result, {type: 'text/plain'});
 
 
-        const elem = document.createElement("a");
-        elem.href= URL.createObjectURL(file);
-        elem.download = "100ideas-" + Date.now() + ".txt";
+        // const elem = document.createElement("a");
+        // elem.href= URL.createObjectURL(file);
+        // elem.download = "100ideas-" + Date.now() + ".txt";
 
-        document.body.appendChild(elem);
-        elem.click();
+        // document.body.appendChild(elem);
+        // elem.click();
   }
 
   return (
@@ -196,7 +192,7 @@ function StudentInfo({filterData}) {
       </thead>
       <tbody>
         
-       {(filterData.length <= 0 ?  studentsData?.map(student => (
+       {(filterData.length <= 0 ? studentsData?.map(student => (
          <tr key={student.id}>
                <td>{addZero(student.id)}</td>
                <td>{capitalizeFirstLetter(student.surname)}</td>
@@ -205,7 +201,7 @@ function StudentInfo({filterData}) {
                <td>{capitalizeFirstLetter(student.gender)}</td>
                <td>{student.level}</td>
                <td>{capitalizeFirstLetter(student.state)}</td>
-               <td><DownloadButton onClick={downloadResult} text="Download Result" className="download" /></td>
+               <td><DownloadButton onClick={downloadResult(student.id)} text="Download Result" className="download" /></td>
         </tr>
        )) 
        : filterData?.map(student => (
@@ -217,7 +213,7 @@ function StudentInfo({filterData}) {
                <td>{capitalizeFirstLetter(student.gender)}</td>
                <td>{student.level}</td>
                <td>{capitalizeFirstLetter(student.state)}</td>
-               <td><DownloadButton onClick={downloadResult} text="Download Result" className="download" /></td>
+               <td><DownloadButton onClick={downloadResult(student.id)} text="Download Result" className="download" /></td>
         </tr>
         )))}
       </tbody>
@@ -225,98 +221,7 @@ function StudentInfo({filterData}) {
   );
 }
 
-// function ViewResult() {
-//  return (
-//   <div>
-//       <div className="wrapper">
-//           <img src="" alt="logo" />
-//           <div className="school-details">
-//              <h2>FREMONT COLLEGE OF EDUCATION</h2>
-//              <p>No.5 Raymond Osuman Street, PMB 2191 Maitama, Abuja, Nigeria.</p>
-//            <h3>Post Graduate Diploma in Education</h3>
-//             <h4>Student First Semester Statement Of Result</h4>
-//           </div>
-//           <img src="" alt="picture" />
-//       </div>
-
-//       <div className="student-details">
-//         <div>
-//            <p>Name: <span>Chukwuma James Nnamdi</span></p>
-//            <p>Level: <span>100 level</span></p>
-//          </div>
-
-//           <div>
-//            <p>Reg. No: <span>FCE/PGDE/2021/002</span></p>
-//            <p>Session: <span>2022/2023 Session</span></p>
-//          </div>
-//       </div>
-
-//      <table  id="table">
-//       <thead>
-//         <tr>
-//           <th>S/N</th>
-//           <th>Course Code</th>
-//           <th>Course Title</th>
-//           <th>Unit</th>
-//           <th>Grade</th>
-//           <th>Total Point</th>
-//         </tr>
-//       </thead>
-//       <tbody>
-//          <tr>
-//           <td>1</td>
-//           <td>PDE 701</td>
-//           <td>History of Education</td>
-//           <td>2</td>
-//           <td>A</td>
-//           <td>B</td>      
-//         </tr>  
-//         <tr>
-//           <td>2</td>
-//           <td>PDE 701</td>
-//           <td>History of Education</td>
-//           <td>2</td>
-//           <td>A</td>
-//           <td>B</td>      
-//         </tr>  
-//         <tr>
-//           <td>3</td>
-//           <td>PDE 701</td>
-//           <td>History of Education</td>
-//           <td>2</td>
-//           <td>A</td>
-//           <td>B</td>      
-//         </tr>  
-//       </tbody>
-//       </table>
-
-//       <table id="table-two">
-//        <thead>
-//          <tr>
-//           <th>UNTS</th>
-//           <th>UNTD</th>
-//           <th>GPTS</th>
-//           <th>GPTD</th>
-//           <th>GPATS</th>
-//           <th>GPATD</th>
-//          </tr>
-//       </thead>
-//       <tbody>
-//          <tr>
-//           <td>028</td>
-//           <td>028</td>
-//           <td>067</td>
-//           <td>067</td>
-//           <td>2.71</td>
-//           <td>2.71</td>      
-//         </tr>  
-//       </tbody>
-//       </table>
-//   </div>
-//  )
-// }
-
-
+// Students Data Componenet
 function StudentsData() {
   return (
     <>
