@@ -90,7 +90,7 @@ function FilterStudents() {
           <form id="form" onSubmit={handleSubmit}>
             <SelectInput
               options={ages}
-              text="Age:"
+              text="Age"
               name="ages"
               placeholder="select age"
               className="select-age"
@@ -99,21 +99,21 @@ function FilterStudents() {
             <SelectInputStates
               options={states}
               placeholder="select state"
-              text="State:"
+              text="State"
               className="select-state"
               onChange={(e) => setState(e.target.value)}
             />
             <SelectInputLevel
               options={levels}
               placeholder="select level"
-              text="Level:"
+              text="Level"
               className="select-level"
               onChange={(e) => setLevel(e.target.value)}
             />
             <SelectInputGenders
               options={genders}
               placeholder="select gender"
-              text="Gender:"
+              text="Gender"
               className="select-gender"
               onChange={(e) => setGender(e.target.value)}
             />

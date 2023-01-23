@@ -75,18 +75,41 @@ form {
   padding: 1.5rem 0;
 }
 
-Select {
+#select-container {
+  position: relative;
+}
+
+select {
   border: 1px solid #adb7be;
   outline: none;
-  padding: 0.7rem 0.5rem;
+  padding: 1.2rem 0.4rem 0.8rem 0.4rem;
   border-radius: 0.25rem;
-  width: 250px;
+  width: 260px;
   color: #eee;
   font-size: 1rem;
   cursor: pointer;
 }
 
-Select option {
+#select-container .select-wrapper {
+  position: absolute;
+  top: -12px;
+  left: 8px;
+  color: #343434;
+  background-color: white;
+  padding: 0.3rem;
+  border: none;
+  outline: none;
+}
+
+#select-container .select-wrapper span {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+select option {
   color: #000;
 }
 
@@ -311,7 +334,7 @@ div.result {
   padding: 20px;
 }
 
-@media only screen and (max-width: 690px) {
+@media only screen and (max-width: 980px) {
   form {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -332,12 +355,39 @@ div.result {
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 690px) and (min-width: 535px) {
   form {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: center;
+    place-items: center;
+    grid-gap: 1.8rem;
+    padding: 1.5rem 0;
+  }
+
+  .student-details {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    padding: 2rem 0.5rem;
+  }
+
+  .student-details h3 {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 534px) {
+  form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: center;
+    place-items: center;
     grid-gap: 1.5rem;
     padding: 1.5rem 0;
+  }
+
+  select {
+    width: 240px;
   }
 }
