@@ -38,8 +38,8 @@ header h1 {
 
 div.table-container {
   height: 520px;
-  overflow-x: auto;
-  overflow-y: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .filter-container,
@@ -118,7 +118,7 @@ button:hover {
   padding: 3rem 0;
 }
 
-/* .table-container {
+.table-container {
   overflow: scroll;
 }
 .table-containe::-webkit-scrollbar {
@@ -129,7 +129,7 @@ button:hover {
   box-shadow: inset 0 0 5px #46c35f;
   border-radius: 10px;
   background: #46c35f;
-} */
+}
 
 .table thead:first-child {
   background: #f9f9fa;
