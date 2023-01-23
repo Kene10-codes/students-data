@@ -42,6 +42,11 @@ div.table-container {
   overflow-y: auto;
 }
 
+div.table-container-two {
+  overflow-x: auto;
+  margin-bottom: 25px;
+}
+
 .filter-container,
 table {
   background: #ffffff;
@@ -298,10 +303,14 @@ button Link {
   color: #fff;
 }
 
+.remarks-wrapper {
+  margin-top: 20px;
+}
+
 p span.remarks {
   font-family: "Lato";
-  font-style: normal;
-  font-weight: 500;
+  font-style: norml;
+  font-weight: 700;
   font-size: 16px;
   line-height: 14px;
   color: #0d7590;

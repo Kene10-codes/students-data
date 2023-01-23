@@ -58,7 +58,7 @@ const Result = React.forwardRef((props, ref) => {
         </div>
       </div>
 
-      <div className="table-container">
+      <div className="table-container-two">
         <table id="table">
           <thead>
             <tr>
@@ -85,7 +85,7 @@ const Result = React.forwardRef((props, ref) => {
         </table>
       </div>
 
-      <div className="table-container">
+      <div className="table-container-two">
         <table id="table-two">
           <thead>
             <tr>
@@ -108,12 +108,14 @@ const Result = React.forwardRef((props, ref) => {
             </tr>
           </tbody>
         </table>
-        <p>
-          Remarks:{" "}
-          <span className="remarks">
-            {studentResult.data?.cummulative?.remarks}
-          </span>
-        </p>
+        <div className="remarks-wrapper">
+          <p>
+            Remarks:{" "}
+            <span className="remarks">
+              {studentResult.data?.cummulative?.remarks}
+            </span>
+          </p>
+        </div>
       </div>
       <footer>
         <hr />
