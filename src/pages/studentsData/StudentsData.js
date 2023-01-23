@@ -159,7 +159,7 @@ function StudentInfo({ filterData }) {
   }
 
   return (
-    <div className="filter-container">
+    <div className="filter-container-two">
       <div className="table-container">
         <table className="table">
           <thead>
