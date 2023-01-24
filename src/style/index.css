@@ -44,6 +44,7 @@ div.table-container {
 
 div.table-container-two {
   overflow-x: auto;
+  overflow-y: auto;
   margin-bottom: 25px;
 }
 
@@ -371,12 +372,23 @@ div.result {
     padding: 1rem 0 1rem 0;
   }
 
+  .table thead:first-child {
+    font-size: 12px;
+    letter-spacing: 0.75px;
+    color: #343434;
+    height: 30px;
+  }
+
   .student-details h3 {
     font-size: 1.2rem;
   }
 }
 
 @media only screen and (max-width: 690px) and (min-width: 535px) {
+  header.header h1 {
+    font-size: 1.9rem;
+  }
+
   form {
     display: grid;
     grid-template-columns: 1fr;
@@ -439,12 +451,24 @@ div.result {
     line-height: 14px;
     color: #333333;
   }
+
+  .table thead:first-child {
+    font-size: 12px;
+    letter-spacing: 0.75px;
+    color: #343434;
+    height: 30px;
+  }
+
   div.result {
     padding: 10px;
   }
 }
 
 @media only screen and (max-width: 534px) {
+  header.header h1 {
+    font-size: 1.7rem;
+  }
+
   form {
     display: grid;
     grid-template-columns: 1fr;
@@ -480,40 +504,77 @@ div.result {
   div.wrapper .school-details h2 {
     font-style: normal;
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     line-height: 30px;
     color: #4f4f4f;
     text-align: center;
-    padding: 1rem 0 1rem 0;
+    padding: 0.5rem 0 0.2rem 0;
   }
   div.wrapper .school-details p {
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 13px;
+    line-height: 18px;
     text-align: center;
     color: #4f4f4f;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.4rem;
   }
 
   div.wrapper .school-details h3 {
     font-family: "Lato";
     font-style: normal;
     font-weight: 600;
-    font-size: 21px;
-    line-height: 24px;
+    font-size: 1.15rem;
+    line-height: 22px;
     color: #333333;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.2rem;
   }
 
   div.wrapper .school-details h4 {
     font-family: "Lato";
     font-style: normal;
-    font-weight: 700;
-    font-size: 15px;
+    font-weight: 500;
+    font-size: 0.8rem;
     line-height: 14px;
-    color: #333333;
   }
+
+  .table thead:first-child {
+    font-size: 12px;
+    letter-spacing: 0.75px;
+    color: #343434;
+    height: 30px;
+  }
+
+  div.table-container {
+    height: 200px;
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+
   img {
     width: 70px;
     height: auto;
+    display: none;
+  }
+
+  #table thead tr th {
+    font-size: 10px;
+    padding: 0 1.5rem;
+  }
+
+  #table-two thead tr th {
+    font-size: 10px;
+    padding: 0 1.5rem;
+  }
+
+  div.remarks-wrapper {
+    margin-top: 10px;
+  }
+
+  footer {
+    padding-top: 35px;
+  }
+
+  footer hr {
+    width: 250px;
+    margin-bottom: 15px;
   }
 }

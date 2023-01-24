@@ -108,14 +108,14 @@ const Result = React.forwardRef((props, ref) => {
             </tr>
           </tbody>
         </table>
-        <div className="remarks-wrapper">
-          <p>
-            Remarks:{" "}
-            <span className="remarks">
-              {studentResult.data?.cummulative?.remarks}
-            </span>
-          </p>
-        </div>
+      </div>
+      <div className="remarks-wrapper">
+        <p>
+          Remarks:{" "}
+          <span className="remarks">
+            {studentResult.data?.cummulative?.remarks}
+          </span>
+        </p>
       </div>
       <footer>
         <hr />

@@ -1,8 +1,7 @@
-export function Header({text}) {
+export function Header({ text }) {
   return (
-    <header>
-        <h1>{text}</h1>
+    <header className="header">
+      <h1>{text}</h1>
     </header>
-  )
+  );
 }
-
