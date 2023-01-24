@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import ClipLoad from "react-spinners/ClipLoader";
 import { Header } from "../../components/header/Header.js";
 import {
   SelectInput,
@@ -129,14 +130,17 @@ function FilterStudents() {
 function StudentInfo({ filterData }) {
   // Set the states
   const [studentsData, setStudentsData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   // Perform requests on the server
   useEffect(() => {
+    setLoading(true);
     let mounted = true;
     getStudentsData().then((studentsData) => {
       if (mounted) {
         setStudentsData(studentsData?.data.students);
+        setLoading(false);
       }
     });
 
@@ -158,62 +162,77 @@ function StudentInfo({ filterData }) {
     }
   }
 
+  // Spinner CSS
+  const override = {
+    display: "block",
+    margin: "100px auto 0 auto",
+  };
+
   return (
     <div className="filter-container-two">
       <div className="table-container">
-        <table className="table">
-          <thead>
-            <tr>
-              <th>S/N</th>
-              <th>Surname</th>
-              <th>First Name</th>
-              <th>Age</th>
-              <th>Gender</th>
-              <th>Level</th>
-              <th>State</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filterData.length <= 0
-              ? studentsData?.map((student) => (
-                  <tr key={student.id}>
-                    <td>{addZero(student.id)}</td>
-                    <td>{capitalizeFirstLetter(student.surname)}</td>
-                    <td>{capitalizeFirstLetter(student.firstname)}</td>
-                    <td>{student.age}</td>
-                    <td>{capitalizeFirstLetter(student.gender)}</td>
-                    <td>{student.level}</td>
-                    <td>{capitalizeFirstLetter(student.state)}</td>
-                    <td>
-                      <button
-                        onClick={() => navigate(`/view-result/${student.id}`)}
-                      >
-                        View Result
-                      </button>
-                    </td>
-                  </tr>
-                ))
-              : filterData?.map((student) => (
-                  <tr key={student.id}>
-                    <td>{addZero(student.id)}</td>
-                    <td>{capitalizeFirstLetter(student.surname)}</td>
-                    <td>{capitalizeFirstLetter(student.firstname)}</td>
-                    <td>{student.age}</td>
-                    <td>{capitalizeFirstLetter(student.gender)}</td>
-                    <td>{student.level}</td>
-                    <td>{capitalizeFirstLetter(student.state)}</td>
-                    <td>
-                      <button
-                        onClick={() => navigate(`/view-result/${student.id}`)}
-                      >
-                        View Result
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-          </tbody>
-        </table>
+        {loading ? (
+          <ClipLoad
+            color={"#46c35f"}
+            cssOverride={override}
+            arial-label="Loaing..."
+            size={150}
+          />
+        ) : (
+          <table className="table">
+            <thead>
+              <tr>
+                <th>S/N</th>
+                <th>Surname</th>
+                <th>First Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Level</th>
+                <th>State</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filterData.length <= 0
+                ? studentsData?.map((student) => (
+                    <tr key={student.id}>
+                      <td>{addZero(student.id)}</td>
+                      <td>{capitalizeFirstLetter(student.surname)}</td>
+                      <td>{capitalizeFirstLetter(student.firstname)}</td>
+                      <td>{student.age}</td>
+                      <td>{capitalizeFirstLetter(student.gender)}</td>
+                      <td>{student.level}</td>
+                      <td>{capitalizeFirstLetter(student.state)}</td>
+                      <td>
+                        <button
+                          onClick={() => navigate(`/view-result/${student.id}`)}
+                        >
+                          View Result
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                : filterData?.map((student) => (
+                    <tr key={student.id}>
+                      <td>{addZero(student.id)}</td>
+                      <td>{capitalizeFirstLetter(student.surname)}</td>
+                      <td>{capitalizeFirstLetter(student.firstname)}</td>
+                      <td>{student.age}</td>
+                      <td>{capitalizeFirstLetter(student.gender)}</td>
+                      <td>{student.level}</td>
+                      <td>{capitalizeFirstLetter(student.state)}</td>
+                      <td>
+                        <button
+                          onClick={() => navigate(`/view-result/${student.id}`)}
+                        >
+                          View Result
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );
